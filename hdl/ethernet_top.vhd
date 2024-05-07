@@ -1,21 +1,18 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- https://github.com/jswenke
+--
+-- Target Device - xc7a100tcsg324-1
+-- Revision - 0x00000001
+-- Date     - 0x05062024
+--
+-- Comments:
 -- 
--- Create Date: 05/06/2024 08:57:10 PM
--- Design Name: 
--- Module Name: ethernet_top - rtl
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
+-- Notes: 
+-- Default eth settings at power-on reset
+-- Max eth speeds suppored  : 10/100 Mb/s
+-- Default PHY address      : 00001
+-- RMII mode interface
+-- Auto-negotiation enabled, advertising all 10/100 mode capable 
 ----------------------------------------------------------------------------------
 
 
@@ -32,7 +29,17 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity ethernet_top is
---  Port ( );
+    Port (        
+        eth_mdc     : out std_logic;
+        eth_mdio    : inout std_logic;
+        eth_rstn    : out std_logic;
+        eth_crsdv   : in std_logic;
+        eth_rxerr   : in std_logic;
+        eth_rxd     : in std_logic_vector( 1 downto 0);
+        eth_txen    : out std_logic;
+        eth_txd     : out std_logic_vector(1 downto 0);
+        eth_refclk  : out std_logic                        
+     );
 end ethernet_top;
 
 architecture rtl of ethernet_top is
